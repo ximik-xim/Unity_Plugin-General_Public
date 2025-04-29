@@ -14,9 +14,9 @@ public abstract class LogicMessengerDKOBetweenScenes : MonoBehaviour
     public event Action<string> OnInitElement;
     
     [SerializeField]
-    private List<AbsKeyData<GetDataSO_MBS_DKO, DKOStorageKeyAndTargetAction>> _list = new List<AbsKeyData<GetDataSO_MBS_DKO, DKOStorageKeyAndTargetAction>>();
+    private List<AbsKeyData<GetDataSO_MBS_DKO, DKOKeyAndTargetAction>> _list = new List<AbsKeyData<GetDataSO_MBS_DKO, DKOKeyAndTargetAction>>();
 
-    private Dictionary<string, DKOStorageKeyAndTargetAction> _dictionary = new Dictionary<string, DKOStorageKeyAndTargetAction>();
+    private Dictionary<string, DKOKeyAndTargetAction> _dictionary = new Dictionary<string, DKOKeyAndTargetAction>();
 
     private void Awake()
     {
@@ -35,7 +35,7 @@ public abstract class LogicMessengerDKOBetweenScenes : MonoBehaviour
     
     private void StartInit()
     {
-        List<AbsKeyData<GetDataSO_MBS_DKO, DKOStorageKeyAndTargetAction>> _buffer = new List<AbsKeyData<GetDataSO_MBS_DKO, DKOStorageKeyAndTargetAction>>();
+        List<AbsKeyData<GetDataSO_MBS_DKO, DKOKeyAndTargetAction>> _buffer = new List<AbsKeyData<GetDataSO_MBS_DKO, DKOKeyAndTargetAction>>();
         bool _isStart = false;
         
         StartLogic();
@@ -116,7 +116,7 @@ public abstract class LogicMessengerDKOBetweenScenes : MonoBehaviour
     }
 
 
-    public DKOStorageKeyAndTargetAction GetDKO(MessengerBetweenSceneKeyDKO key)
+    public DKOKeyAndTargetAction GetDKO(MessengerBetweenSceneKeyDKO key)
     {
         return _dictionary[key.GetKey()];
     }
@@ -126,7 +126,7 @@ public abstract class LogicMessengerDKOBetweenScenes : MonoBehaviour
         return _dictionary.ContainsKey(key.GetKey());
     }
     
-    public void AddDKO(MessengerBetweenSceneKeyDKO key,DKOStorageKeyAndTargetAction DKO)
+    public void AddDKO(MessengerBetweenSceneKeyDKO key,DKOKeyAndTargetAction DKO)
     {
         if (DKOIsAlready(key) == false)
         {

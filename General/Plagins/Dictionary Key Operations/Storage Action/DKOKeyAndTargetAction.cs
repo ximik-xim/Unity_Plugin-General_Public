@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Хранилеще Task по ключу
 /// </summary>
-public class DKOStorageKeyAndTargetAction : MonoBehaviour
+public class DKOKeyAndTargetAction : MonoBehaviour
 {
     private bool _isInit = false;
     public bool IsInit => _isInit;

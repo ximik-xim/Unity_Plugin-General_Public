@@ -6,7 +6,7 @@ using UnityEngine;
 public class DkoExampleInvokeDkoKey : MonoBehaviour
 {
     [SerializeField] 
-    private DKOStorageKeyAndTargetAction _keyAndTargetAction;
+    private DKOKeyAndTargetAction _keyAndTargetAction;
 
     [SerializeField] 
     private GetDataSODataDKODataKey _keyAction;

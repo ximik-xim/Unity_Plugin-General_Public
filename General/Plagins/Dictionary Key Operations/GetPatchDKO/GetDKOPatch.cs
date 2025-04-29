@@ -13,7 +13,7 @@ public class GetDKOPatch : MonoBehaviour
     [SerializeField] 
     private GetDataSO_MBS_DKO _keyDko;
 
-    private DKOStorageKeyAndTargetAction _Dko;
+    private DKOKeyAndTargetAction _Dko;
     [SerializeField] 
     private GetDataSODataDKODataKey _keyGeneralLogic;
 
