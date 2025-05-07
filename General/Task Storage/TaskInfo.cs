@@ -1,4 +1,5 @@
 
+[System.Serializable]
 public class TaskInfo 
 {
     private string _text;

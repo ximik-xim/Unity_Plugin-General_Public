@@ -6,8 +6,6 @@ using UnityEngine;
 [System.Serializable]
 public abstract class AbsStorageTask<Key> where Key : IGetKey<string>
 {
-    public bool IsThereTask => _isThereTask;
-    private bool _isThereTask;
     public event Action OnUpdateStatus;
 
     protected Dictionary<string, TaskInfo> _task = new Dictionary<string, TaskInfo>();
@@ -18,7 +16,6 @@ public abstract class AbsStorageTask<Key> where Key : IGetKey<string>
         {
             _task.Add(key.GetKey(), new TaskInfo(text));
             
-            _isThereTask = true;
             OnUpdateStatus?.Invoke();
             
             return;
@@ -33,7 +30,6 @@ public abstract class AbsStorageTask<Key> where Key : IGetKey<string>
         {
             _task.Remove(key.GetKey());
             
-            _isThereTask = false;
             OnUpdateStatus?.Invoke();
             
             return;

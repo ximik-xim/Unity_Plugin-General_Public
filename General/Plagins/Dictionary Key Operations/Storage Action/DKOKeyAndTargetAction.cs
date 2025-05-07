@@ -118,7 +118,7 @@ public class DKOKeyAndTargetAction : MonoBehaviour
         return _dictionary[keyAction.GetKey()].Run(dkoDataRund);
     }
 
-    public DKODataRund KeyRun<T>(DKODataKey keyAction, DKODataRund dkoDataRund = null) where T : DKODataRund
+    public T KeyRun<T>(DKODataKey keyAction, DKODataRund dkoDataRund = null) where T : DKODataRund
     {
         DKODataRund data = _dictionary[keyAction.GetKey()].Run(dkoDataRund);
 
