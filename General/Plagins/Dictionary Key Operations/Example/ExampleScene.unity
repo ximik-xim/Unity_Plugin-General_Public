@@ -151,7 +151,7 @@ MonoBehaviour:
   _keyAndTargetAction: {fileID: 1691004406}
   _keyAction:
     _dataSO: {fileID: 11400000, guid: 5ec2f8e009454b04b8c5f579d66003be, type: 2}
-    _selectIndif: {fileID: 11400000, guid: 66ec59031dd178841be3c26c93de6416, type: 2}
+    _selectIndif: {fileID: 11400000, guid: bc918db4abdc28746a8b792bc147d6c1, type: 2}
     _error:
       Enable: 0
       TextError: 
@@ -339,7 +339,7 @@ MonoBehaviour:
   _list:
   - Key:
       _dataSO: {fileID: 11400000, guid: 5ec2f8e009454b04b8c5f579d66003be, type: 2}
-      _selectIndif: {fileID: 11400000, guid: 66ec59031dd178841be3c26c93de6416, type: 2}
+      _selectIndif: {fileID: 11400000, guid: bc918db4abdc28746a8b792bc147d6c1, type: 2}
       _error:
         Enable: 0
         TextError: 

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9740cfd502222fc49892fd9d1ddf4325, type: 3}
   m_Name: DKO LoadingScreen Action Get General Logic
   m_EditorClassIdentifier: 
-  _nameSO: Loading Screen
+  _nameSO: DKO LoadingScreen Action Get General Logic
   _setName: 1
-  _ChechTargetPath: 0
+  _saveBackupChangeData: 1
   _list:
-  - _identifierData: {fileID: 0}
+  - _identifierData: {fileID: 11400000, guid: 10fc9d708adb4274791099b274bc7159, type: 2}
     _dataKey:
       key: LSGetGeneralLogic
   _fatalError:
