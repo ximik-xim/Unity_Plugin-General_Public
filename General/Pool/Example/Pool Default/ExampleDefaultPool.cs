@@ -5,19 +5,32 @@ using UnityEngine;
 public class ExampleDefaultPool : MonoBehaviour
 {
     [SerializeField]
-    private CustomPool<ExampleDefaultPoolData> _examplePoolKey;
+    private CustomPool<ExampleElementDefaultPoolData> _examplePoolKey;
 
     [SerializeField] 
-    private ExampleDefaultPoolData  _prefabs;
+    private ExampleElementDefaultPoolData  _prefabs;
     private void OnEnable()
     {
-        _examplePoolKey = new CustomPool<ExampleDefaultPoolData>(CreateData, null, null);
+#if UNITY_EDITOR
+        bool lastStatusInspector = false;
+        if (_examplePoolKey != null)
+        {
+            lastStatusInspector = _examplePoolKey.UseListInspector;
+        }
+#endif
+        
+        _examplePoolKey = new CustomPool<ExampleElementDefaultPoolData>(CreateData, null, null);
+
+#if UNITY_EDITOR
+        _examplePoolKey.UseListInspector = lastStatusInspector;
+#endif   
+
         var obj = _examplePoolKey.GetObject();
-        //_examplePoolKey.Release( obj);
+        //_examplePoolKey.ReleaseObject(obj);
         
     }
 
-    private ExampleDefaultPoolData CreateData()
+    private ExampleElementDefaultPoolData CreateData()
     {
         return Instantiate(_prefabs);
     }

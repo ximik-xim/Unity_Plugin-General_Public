@@ -57,6 +57,17 @@ public class GetDKOPatch : MonoBehaviour
     {
         if (_isSaveDataDKO == true)
         {
+            if (_keyDko == null)
+            {
+                Debug.LogError($"Внимание у DKO с именем {this.gameObject.name} ключ не был установлен");    
+            }
+
+            if (_keyDko.GetData() == null)
+            {
+                Debug.LogError($"Внимание у DKO с именем {this.gameObject.name} проблема с ключем типа {_keyDko}, возращаемы им ключ == Null");
+            }
+            
+            
             _Dko = _findMbsDkoDontDestroy.GetDontDestroyMbsDko.GetDKO(_keyDko.GetData());
             _DkoDataRund = _Dko.KeyRun(_keyGeneralLogic.GetData());
         }

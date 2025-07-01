@@ -25,9 +25,24 @@ public abstract class LogicMessengerDKOBetweenScenes : MonoBehaviour
 
     protected void LocalAwake()
     {
-        foreach (var VARIABLE in _list)
+        for (int i = 0; i < _list.Count; i++)
         {
-            _dictionary.Add(VARIABLE.Key.GetData().GetKey(),VARIABLE.Data);    
+            if (_list[i].Key == null)
+            {
+                Debug.LogError($"Ошибка при инициализации. SO ключа == null. Элемент под номером {i}");    
+            }
+            
+            if (_list[i].Key.GetData() == null)
+            {
+                Debug.LogError($"Ошибка при инициализации. Внимание пришел null вместо ключа. Элемент под номером {i}");
+            }
+
+            if (_list[i].Key.GetData().GetKey() == null)
+            {
+                Debug.LogError($"Ошибка при инициализации. Внимание проблема с ключем, возвращаемым им ключ == Null. Элемент под номером {i}");
+            }
+
+            _dictionary.Add(_list[i].Key.GetData().GetKey(), _list[i].Data);
         }
 
         StartInit();
@@ -118,6 +133,17 @@ public abstract class LogicMessengerDKOBetweenScenes : MonoBehaviour
 
     public DKOKeyAndTargetAction GetDKO(MessengerBetweenSceneKeyDKO key)
     {
+
+        if (key == null)
+        {
+            Debug.LogError($"Внимание пришел null вместо ключа.");    
+        }
+
+        if (key.GetKey() == null)
+        {
+            Debug.LogError($"Внимание проблема с ключем, возвращаемым им ключ == Null");
+        }
+        
         return _dictionary[key.GetKey()];
     }
 

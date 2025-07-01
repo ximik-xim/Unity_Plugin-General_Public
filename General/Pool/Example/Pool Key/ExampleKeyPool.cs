@@ -6,20 +6,36 @@ using UnityEngine;
 public class ExampleKeyPool : MonoBehaviour
 {
     [SerializeField]
-    private CustomPoolKey<TestPoolKey, ExampleKeyMono> _examplePoolKey;
+    private CustomPoolKey<TestPoolKey, ExampleElementKeyMono> _examplePoolKey;
 
     [SerializeField] 
-    private List<ExampleKeyMono>  _prefabs;
+    private List<ExampleElementKeyMono> _prefabs;
+
+    [SerializeField] 
+    private TestPoolKey _keyCreateTestElement;
     private void OnEnable()
     {
-        _examplePoolKey = new CustomPoolKey<TestPoolKey, ExampleKeyMono>(CreateData, null, null);
-        var obj = _examplePoolKey.GetObject(TestPoolKey.One);
+#if UNITY_EDITOR
+        bool lastStatusInspector = false;
+        if (_examplePoolKey != null)
+        {
+            lastStatusInspector = _examplePoolKey.UseListInspector;
+        }
+#endif
+        
+        _examplePoolKey = new CustomPoolKey<TestPoolKey, ExampleElementKeyMono>(CreateData, null, null);
+
+#if UNITY_EDITOR
+        _examplePoolKey.UseListInspector = lastStatusInspector;
+#endif  
+        
+        var obj = _examplePoolKey.GetObject(_keyCreateTestElement);
         //_examplePoolKey.Release( obj);
         
         
     }
 
-    private ExampleKeyMono CreateData(TestPoolKey arg)
+    private ExampleElementKeyMono CreateData(TestPoolKey arg)
     {
         foreach (var VARIABLE in _prefabs)
         {

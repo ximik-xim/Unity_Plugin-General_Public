@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: New Example Save Json Script Obj
   m_EditorClassIdentifier: 
   _exampleUserClass:
-    ln: 
-    fd:
-      val: 0
+    _listInt: 16000000
+    _exampleClassJson2:
+      _intValue: 55
     exampleMonobeh: {fileID: 0}
     exampleScriptObj: {fileID: 0}
