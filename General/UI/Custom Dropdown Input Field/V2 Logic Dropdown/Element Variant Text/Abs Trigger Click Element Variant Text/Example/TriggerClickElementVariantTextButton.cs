@@ -5,7 +5,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Триггер нажатия на подсказку через кнопку
 /// </summary>
-public class AbsTriggerClickElementVariantTextButton : AbsTriggerClickElementVariantText
+public class TriggerClickElementVariantTextButton : AbsTriggerClickElementVariantText
 {
     public override bool IsInit => true;
     public override event Action OnInit;

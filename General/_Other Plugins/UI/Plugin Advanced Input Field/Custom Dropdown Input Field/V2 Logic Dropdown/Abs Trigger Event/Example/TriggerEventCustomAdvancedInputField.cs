@@ -2,7 +2,7 @@ using System;
 using AdvancedInputFieldPlugin;
 using UnityEngine;
 
-public class TriggerEventInputFieldCustomAdvancedInputField : AbsTriggerEventInputFieldCustom
+public class TriggerEventCustomAdvancedInputField : AbsTriggerEventInputFieldCustom
 {
     [SerializeField]
     private AdvancedInputField _advancedInputField;

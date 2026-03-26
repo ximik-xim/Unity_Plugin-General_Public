@@ -5,7 +5,7 @@ using UnityEngine;
 /// Триггер нажатия на подсказку через кастомную кнопку
 /// (не сбрасывает фокус с ранее выбранного обьекта)
 /// </summary>
-public class AbsTriggerClickElementVariantTextCustomButton : AbsTriggerClickElementVariantText
+public class TriggerClickElementVariantTextCustomButton : AbsTriggerClickElementVariantText
 {
     public override bool IsInit => true;
     public override event Action OnInit;
