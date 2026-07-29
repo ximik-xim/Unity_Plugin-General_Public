@@ -49,7 +49,24 @@ public abstract class LogicMessengerDKOBetweenScenes : MonoBehaviour
 #if  UNITY_EDITOR
             _visibleData.Add(new AbsKeyData<string, DKOKeyAndTargetAction>(_list[i].Key.GetData().GetKey(), _list[i].Data));
 #endif
-            _dictionary.Add(_list[i].Key.GetData().GetKey(), _list[i].Data);
+            if (_dictionary.ContainsKey(_list[i].Key.GetData().GetKey()) == false)
+            {
+                _dictionary.Add(_list[i].Key.GetData().GetKey(), _list[i].Data);
+            }
+            else
+            {
+                string targetId = "";
+
+                for (int j = 0; j < _list.Count; j++)
+                {
+                    if (_list[j].Key.GetData().GetKey() == _list[i].Key.GetData().GetKey())
+                    {
+                        targetId += " " + j;
+                    }
+                }
+                
+                Debug.LogError($"Ошибка ключ {_list[i].Key.GetData().GetKey()} уже есть под (Проверьте номерами {targetId})  ");
+            }
         }
 
         StartInit();
@@ -149,6 +166,11 @@ public abstract class LogicMessengerDKOBetweenScenes : MonoBehaviour
         if (key.GetKey() == null)
         {
             Debug.LogError($"Внимание проблема с ключем, возвращаемым им ключ == Null");
+        }
+
+        if (_dictionary.ContainsKey(key.GetKey()) == false) 
+        {
+            Debug.LogError($"Внимание ключ {key.GetKey()} не был найден.");    
         }
         
         return _dictionary[key.GetKey()];

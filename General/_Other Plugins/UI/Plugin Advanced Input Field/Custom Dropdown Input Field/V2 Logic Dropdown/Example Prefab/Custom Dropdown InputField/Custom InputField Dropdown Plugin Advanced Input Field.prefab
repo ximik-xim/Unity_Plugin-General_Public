@@ -1,68 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &618350857942220725
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2064750503822152661}
-  - component: {fileID: 6895533382655586075}
-  - component: {fileID: 7017268806116670458}
-  m_Layer: 5
-  m_Name: Get Text UI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &2064750503822152661
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618350857942220725}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6361832635848337605}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6895533382655586075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618350857942220725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d0650a5557324b4a8c0eaaf896f89fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GetTextUI_Default
-  _text: {fileID: 7738305482275285871}
---- !u!114 &7017268806116670458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618350857942220725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 683d717ebdc70704886f33472bb9dc64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DKOGetTextGetTextUI
-  _data: {fileID: 6895533382655586075}
 --- !u!1 &939312634702924840
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,8 +406,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6269926290363411151}
-  - {fileID: 4762317132182602802}
-  - {fileID: 2064750503822152661}
+  - {fileID: 7053185479917967709}
+  - {fileID: 3877532040681638506}
   m_Father: {fileID: 2843667362963868045}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -501,20 +438,20 @@ MonoBehaviour:
     Data: {fileID: 2530885521708432455}
   - Key:
       _dataSO: {fileID: 11400000, guid: d113b57d983cbee4198ff95f5a7c55c6, type: 2}
+      _selectIndif: {fileID: 11400000, guid: ad26de9a125bfa94896a8d80dcd17577, type: 2}
+      _error:
+        Enable: 0
+        TextError: 
+        MessageType: 0
+    Data: {fileID: 7833990572098388468}
+  - Key:
+      _dataSO: {fileID: 11400000, guid: d113b57d983cbee4198ff95f5a7c55c6, type: 2}
       _selectIndif: {fileID: 11400000, guid: 8f11088c4816dba4cbf4d9b29136c2fc, type: 2}
       _error:
         Enable: 0
         TextError: 
         MessageType: 0
-    Data: {fileID: 982142954005672322}
-  - Key:
-      _dataSO: {fileID: 11400000, guid: d113b57d983cbee4198ff95f5a7c55c6, type: 2}
-      _selectIndif: {fileID: 11400000, guid: c336ff1c6768d7f41a104bd3450d0131, type: 2}
-      _error:
-        Enable: 0
-        TextError: 
-        MessageType: 0
-    Data: {fileID: 7017268806116670458}
+    Data: {fileID: 8556084252515948874}
 --- !u!1 &2015122192415889323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,7 +1192,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!1 &5931857832122017592
+--- !u!1 &6139532573244462026
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1263,61 +1200,61 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4762317132182602802}
-  - component: {fileID: 7501730472649347970}
-  - component: {fileID: 982142954005672322}
+  - component: {fileID: 7053185479917967709}
+  - component: {fileID: 7833990572098388468}
+  - component: {fileID: 3005612584250465826}
   m_Layer: 5
-  m_Name: Get Text Header
+  m_Name: Get Abs Text Header
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &4762317132182602802
+--- !u!224 &7053185479917967709
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5931857832122017592}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 6139532573244462026}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.99999, y: 0.99999, z: 0.99999}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6361832635848337605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -59, y: -755.79333}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7501730472649347970
+--- !u!114 &7833990572098388468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5931857832122017592}
+  m_GameObject: {fileID: 6139532573244462026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6953e7c24a34d474e938197eddebd075, type: 3}
+  m_Script: {fileID: 11500000, guid: df8247ad9ab64114499e574b69517fc2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp-firstpass::GetTextInText
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::DKOGetInfoAbsGetAndSetText
+  _data: {fileID: 3005612584250465826}
+--- !u!114 &3005612584250465826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6139532573244462026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae4309b0595e13048ad91de0398455b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::GetAndSetTextTextMeshPro
   _text: {fileID: 0}
---- !u!114 &982142954005672322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5931857832122017592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 838dd57e8887ac34ebee1ee990f9febf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp-firstpass::DKOGetInfoAbsGetText
-  _data: {fileID: 7501730472649347970}
 --- !u!1 &6237851009404751483
 GameObject:
   m_ObjectHideFlags: 0
@@ -1890,6 +1827,69 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.000024795532}
   m_SizeDelta: {x: 92, y: 28}
   m_Pivot: {x: 0, y: 1}
+--- !u!1 &7469333229064405030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3877532040681638506}
+  - component: {fileID: 8556084252515948874}
+  - component: {fileID: 6623897178394481750}
+  m_Layer: 5
+  m_Name: Get Abs Method Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3877532040681638506
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7469333229064405030}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.99999, y: 0.99999, z: 0.99999}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6361832635848337605}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -59, y: -755.79333}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8556084252515948874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7469333229064405030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1754cc06e60cd8a4b90a17f760f74a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::DKOGetInfoAbsTextMethod
+  _data: {fileID: 6623897178394481750}
+--- !u!114 &6623897178394481750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7469333229064405030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694e0884411ad6648b78fdd85bab4bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::UIComponentTextMethodTextDefault
+  _text: {fileID: 0}
 --- !u!1 &7725204334192586145
 GameObject:
   m_ObjectHideFlags: 0

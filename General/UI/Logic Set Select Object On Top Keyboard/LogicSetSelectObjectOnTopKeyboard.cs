@@ -10,9 +10,6 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class LogicSetSelectObjectOnTopKeyboard : MonoBehaviour
 {
-    [SerializeField] 
-    private List<AbsTriggerOpenKeyboardMobile>  _triggerOpenKeyboardMobile;
-    
     /// <summary>
     /// Игнорировать ли обьекты у которых нету скрипта с настройками
     /// Если включено, то у тех обьектов что нету скрипта с настройками, просто не буду трогать вообще
@@ -98,78 +95,23 @@ public class LogicSetSelectObjectOnTopKeyboard : MonoBehaviour
     /// </summary>
     public WrapperCustomEventPriorityT<DKOKeyAndTargetAction> OnEndReturnPosition => OnEventEndReturnPosition.WrapperCustomEventPriorityT;
     private HostCustomEventPriorityT<DKOKeyAndTargetAction> OnEventEndReturnPosition = new HostCustomEventPriorityT<DKOKeyAndTargetAction>();
-    
-    private void Awake()
-    {
-        foreach (var VARIABLE in _triggerOpenKeyboardMobile)
-        {
-            VARIABLE.OnUpdateStatusKeyboardIsVisible += OnUpdateStatusKeyboardIsVisible;
-        }
-    }
 
+
+    
     /// <summary>
-    /// Получения высоты клавиатуры
+    /// Передаем обьект который хотим установить в окно
     /// </summary>
-    /// <returns></returns>
-    private float GetHeightKeyboard()
-    {
-        float height = 0f;
-
-        //Почти никогда не работает
-        height = TouchScreenKeyboard.area.height;
-        
-        if (height != 0f)
-        {
-            return height;
-        }
-        
-        //Получение через Java логику размеров клавы(работает только под андроид,
-        //и возращает размер клавы в пикселях относительно реального размера экрана) 
-#if UNITY_ANDROID && !UNITY_EDITOR
-    using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
-    using (var activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
-    using (var view = activity.Get<AndroidJavaObject>("mUnityPlayer").Call<AndroidJavaObject>("getView"))
-    using (var rect = new AndroidJavaObject("android.graphics.Rect"))
-    {
-        view.Call("getWindowVisibleDisplayFrame", rect);
-
-        int visibleHeight = rect.Call<int>("height");
-        int totalHeight = view.Call<int>("getHeight");
-
-        height = Mathf.Max(0, totalHeight - visibleHeight);
-
-        if (height != 0f)
-        {
-            return height;
-        }
-        
-    }
-#endif
-
-        //Получаю данные о том, насколько обрезан экран
-        var viewport = _camera.rect;
-        //получаю видимую высоту экрана в пикселях
-        float visibleHeightPx = _camera.pixelHeight;
-        //получаю итоговую высоту экрана в пикселях
-        float heighPhonePx = visibleHeightPx / viewport.height;
-
-        return heighPhonePx / 2f;
-    }
-    
-    private void OnUpdateStatusKeyboardIsVisible(bool keyboardIsVisible)
+    public void SetTargetObject(GameObject currentGM)
     {
         if (_isSelectItem == false) 
         {
-            if (keyboardIsVisible == true)
-            {
-                GameObject currentGM = EventSystem.current.currentSelectedGameObject;
-              
                 if (currentGM != null) 
                 {
-                    if (_isIgnoreObjectDontSettings == true)
+                    SettingsSelectObjectOnTopKeyboard data = currentGM.GetComponent<SettingsSelectObjectOnTopKeyboard>();
+
+                    if (data != null)
                     {
-                        SettingsSelectObjectOnTopKeyboard data = currentGM.GetComponent<SettingsSelectObjectOnTopKeyboard>();
-                        if (data != null && data.IsUseThisGM == true)
+                        if (data.IsUseThisGM == true) 
                         {
                             OnEventStartSetPosition.CustomEventPriorityT.Invoke(data.Dko);
                             
@@ -182,8 +124,7 @@ public class LogicSetSelectObjectOnTopKeyboard : MonoBehaviour
                     }
                     else
                     {
-                        SettingsSelectObjectOnTopKeyboard data = currentGM.GetComponent<SettingsSelectObjectOnTopKeyboard>();
-                        if (data == null || data.IsUseThisGM == true)
+                        if (_isIgnoreObjectDontSettings == false)
                         {
                             _isSelectItem = true;
                             _selectItem = currentGM;
@@ -191,31 +132,32 @@ public class LogicSetSelectObjectOnTopKeyboard : MonoBehaviour
                         }
                     }
                 }
-            }
-        }
-        else
-        {
-            if (keyboardIsVisible == false)
-            {
-                SettingsSelectObjectOnTopKeyboard data = _selectItem.GetComponent<SettingsSelectObjectOnTopKeyboard>();
-                if (data != null) 
-                {
-                    OnEventStartReturnPosition.CustomEventPriorityT.Invoke(data.Dko);
-                }
-                
-                ReturnLastPos(_selectItem);
-                _isSelectItem = false;
-                _selectItem = null;
-                
-                if (data != null) 
-                {
-                    OnEventEndReturnPosition.CustomEventPriorityT.Invoke(data.Dko);
-                }
-            }
-            
         }
     }
-    
+
+    /// <summary>
+    /// Возвращаем обьект назад на сове место
+    /// </summary>
+    public void RemoveTargetObject()
+    {
+        if (_isSelectItem == true)
+        {
+            SettingsSelectObjectOnTopKeyboard data = _selectItem.GetComponent<SettingsSelectObjectOnTopKeyboard>();
+            if (data != null) 
+            {
+                OnEventStartReturnPosition.CustomEventPriorityT.Invoke(data.Dko);
+            }
+                
+            ReturnLastPos(_selectItem);
+            _isSelectItem = false;
+            _selectItem = null;
+                
+            if (data != null) 
+            {
+                OnEventEndReturnPosition.CustomEventPriorityT.Invoke(data.Dko);
+            }
+        }
+    }
     
 
     /// <summary>
@@ -404,6 +346,55 @@ public class LogicSetSelectObjectOnTopKeyboard : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Получения высоты клавиатуры
+    /// </summary>
+    /// <returns></returns>
+    private float GetHeightKeyboard()
+    {
+        float height = 0f;
+
+        //Почти никогда не работает
+        height = TouchScreenKeyboard.area.height;
+        
+        if (height != 0f)
+        {
+            return height;
+        }
+        
+        //Получение через Java логику размеров клавы(работает только под андроид,
+        //и возращает размер клавы в пикселях относительно реального размера экрана) 
+#if UNITY_ANDROID && !UNITY_EDITOR
+    using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+    using (var activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+    using (var view = activity.Get<AndroidJavaObject>("mUnityPlayer").Call<AndroidJavaObject>("getView"))
+    using (var rect = new AndroidJavaObject("android.graphics.Rect"))
+    {
+        view.Call("getWindowVisibleDisplayFrame", rect);
+
+        int visibleHeight = rect.Call<int>("height");
+        int totalHeight = view.Call<int>("getHeight");
+
+        height = Mathf.Max(0, totalHeight - visibleHeight);
+
+        if (height != 0f)
+        {
+            return height;
+        }
+        
+    }
+#endif
+
+        //Получаю данные о том, насколько обрезан экран
+        var viewport = _camera.rect;
+        //получаю видимую высоту экрана в пикселях
+        float visibleHeightPx = _camera.pixelHeight;
+        //получаю итоговую высоту экрана в пикселях
+        float heighPhonePx = visibleHeightPx / viewport.height;
+
+        return heighPhonePx / 2f;
+    }
+    
 
     /// <summary>
     /// Запускает логику для уст. обьекта над клавиатурой
@@ -442,7 +433,7 @@ public class LogicSetSelectObjectOnTopKeyboard : MonoBehaviour
     /// <param name="gm"></param>
     private void ReturnLastPos(GameObject gm)
     {
-        if (gm != null) 
+        if (gm != null)
         {
             RectTransform rectTransformGM = gm.GetComponent<RectTransform>();
 
@@ -456,17 +447,8 @@ public class LogicSetSelectObjectOnTopKeyboard : MonoBehaviour
             rectTransformGM.anchoredPosition = _saveTransformTargetGM.anchoredPosition;
             rectTransformGM.sizeDelta = _saveTransformTargetGM.sizeDelta;
         }
-        
-          _panelParent.SetActive(false);
-        
-    }
 
-    private void OnDestroy()
-    {
-        foreach (var VARIABLE in _triggerOpenKeyboardMobile)
-        {
-            VARIABLE.OnUpdateStatusKeyboardIsVisible -= OnUpdateStatusKeyboardIsVisible;
-        }
+        _panelParent.SetActive(false);
     }
 }
 

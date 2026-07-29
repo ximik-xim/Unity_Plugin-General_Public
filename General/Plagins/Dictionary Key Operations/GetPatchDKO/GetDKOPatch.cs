@@ -6,7 +6,6 @@ using UnityEngine;
 /// </summary>
 public class GetDKOPatch : MonoBehaviour
 {
-
     [SerializeField] 
     private FindMBS_DKO_DontDestroy _findMbsDkoDontDestroy;
 
@@ -59,17 +58,34 @@ public class GetDKOPatch : MonoBehaviour
         {
             if (_keyDko == null)
             {
-                Debug.LogError($"Внимание у DKO с именем {this.gameObject.name} ключ не был установлен");    
+                Debug.LogError($"Внимание у DKO с именем -> {this.gameObject.name} <- ключ не был установлен");    
             }
 
             if (_keyDko.GetData() == null)
             {
-                Debug.LogError($"Внимание у DKO с именем {this.gameObject.name} проблема с ключем типа {_keyDko}, возращаемы им ключ == Null");
+                Debug.LogError($"Внимание у DKO с именем -> {this.gameObject.name} <- проблема с ключем типа -> {_keyDko} <-, возращаемы им ключ == Null");
             }
             
             
-            _Dko = _findMbsDkoDontDestroy.GetDontDestroyMbsDko.GetDKO(_keyDko.GetData());
-            _DkoDataRund = _Dko.KeyRun(_keyGeneralLogic.GetData());
+            if (_findMbsDkoDontDestroy.GetDontDestroyMbsDko.DKOIsAlready(_keyDko.GetData()) == true)
+            {
+                _Dko = _findMbsDkoDontDestroy.GetDontDestroyMbsDko.GetDKO(_keyDko.GetData());
+            }
+            else
+            {
+                Debug.LogError($"Указанное DKO Key And Target Action по ключу -> {_keyDko.GetData().GetKey()} <- не было найдено в MBS DKO. SO DKO Path -> {this.name} <- не Иниц");
+                return;
+            }
+            
+            if (_Dko.ActionIsAlready(_keyGeneralLogic.GetData()) == true)
+            {
+                _DkoDataRund = _Dko.KeyRun(_keyGeneralLogic.GetData());    
+            }
+            else
+            {
+                Debug.LogError($"Указанное DKO по ключу -> {_keyGeneralLogic.GetData().GetKey()} <- не было найдено в DKO Key And Target Action. DKO Path -> {this.name} <- не Иниц");
+                return;
+            }
         }
         
         _init = true;
@@ -83,10 +99,27 @@ public class GetDKOPatch : MonoBehaviour
             return _DkoDataRund;
         }
         
-        _Dko = _findMbsDkoDontDestroy.GetDontDestroyMbsDko.GetDKO(_keyDko.GetData());
-        DKODataRund dataDKO = _Dko.KeyRun(_keyGeneralLogic.GetData(), dkoDataRund);
+        if (_findMbsDkoDontDestroy.GetDontDestroyMbsDko.DKOIsAlready(_keyDko.GetData()) == true)
+        {
+            _Dko = _findMbsDkoDontDestroy.GetDontDestroyMbsDko.GetDKO(_keyDko.GetData());
+        }
+        else
+        {
+            Debug.LogError($"Указанное DKO Key And Target Action по ключу -> {_keyDko.GetData().GetKey()} <- не было найдено в MBS DKO. SO DKO Path -> {this.name} <- не Иниц");
+            return null;
+        }
         
-        return dataDKO;
+        if (_Dko.ActionIsAlready(_keyGeneralLogic.GetData()) == true)
+        {
+            return _Dko.KeyRun(_keyGeneralLogic.GetData(), dkoDataRund);    
+        }
+        else
+        {
+            Debug.LogError($"Указанное DKO по ключу -> {_keyGeneralLogic.GetData().GetKey()} <- не было найдено в DKO Key And Target Action. DKO Path -> {this.name} <- не Иниц");
+            return null;
+        }
+        
+        return null;
     }
 
     public T GetDKO<T>(DKODataRund dkoDataRund = null) where T : DKODataRund
@@ -98,6 +131,10 @@ public class GetDKOPatch : MonoBehaviour
         if (dataDKO is T == true)
         {
             returnData = (T)dataDKO;
+        }
+        else
+        {
+            Debug.LogError($"Не удалось преобразовать тип {dataDKO.GetType()} в тип {typeof(T)}");
         }
 
         return returnData;

@@ -50,8 +50,8 @@ public class CustomInputFieldSetPosText : MonoBehaviour
         {
             if (dko.ActionIsAlready(_keyDkoText.GetData()) == true && dko.ActionIsAlready(_keyDkoTargetGM.GetData()) == true) 
             {
-                var dkoText = (DKODataInfoT<AbsGetStringText>)dko.KeyRun(_keyDkoText.GetData());
-                string setText = dkoText.Data.GetStringText();
+                var dkoText = (DKODataInfoT<AbsGetAndSetText>)dko.KeyRun(_keyDkoText.GetData());
+                string setText = dkoText.Data.GetText();
                 
                 var dkoGm = (DKODataInfoT<AbsGetGm>)dko.KeyRun(_keyDkoTargetGM.GetData());
                 GameObject targetGm = dkoGm.Data.GetGm();

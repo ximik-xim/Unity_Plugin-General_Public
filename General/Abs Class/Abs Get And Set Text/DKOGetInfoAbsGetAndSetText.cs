@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class DKOGetInfoAbsGetAndSetText : DKOGetInfoT<AbsGetAndSetText>
+public class DKOGetInfoAbsGetAndSetText : DKOGetInfoT<AbsGetAndSetText>
 {
     private void Awake()
     {
